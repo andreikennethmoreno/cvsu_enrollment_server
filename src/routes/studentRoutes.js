@@ -255,7 +255,7 @@
    *       401:
    *         description: Unauthorized
    */
-  router.put('/:id', authorize('registrar'), updateStudent);
+  router.put('/:id', authorize('registrar', 'student'), updateStudent);
 
   /**
    * @swagger
