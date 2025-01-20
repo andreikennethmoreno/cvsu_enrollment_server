@@ -59,7 +59,7 @@ Follow these steps to set up the project on your local machine:
 6.  **API documentation:**
 
    ```bash
-   http://localhost:3000/api-docs/#/
+   https://cvsu-enrollment-server.onrender.com/api-docs/#/
 
 
 

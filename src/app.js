@@ -32,7 +32,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:3000/',  // Adjust the URL to your API server
+        url: 'https://cvsu-enrollment-server.onrender.com/',  // Adjust the URL to your API server
       },
     ],
   },
