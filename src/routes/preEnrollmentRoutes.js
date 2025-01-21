@@ -10,6 +10,47 @@ import { protect, authorize } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
+
+/**
+ * @swagger
+ * /api/preenrollments:
+ *   post:
+ *     summary: Create a new pre-enrollment
+ *     tags: [PreEnrollments]
+ *     description: >
+ *       **Roles Allowed:** `registrar`
+ *       Add a new pre-enrollment record.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               student_id:
+ *                 type: integer
+ *               section_id:
+ *                 type: integer
+ *               status:
+ *                 type: string
+ *             example:
+ *               student_id: 1
+ *               section_id: 2
+ *               status: "pending"
+ *     security:
+ *       - bearerAuth: []
+ *     x-authorize: ['registrar']
+ *     responses:
+ *       201:
+ *         description: Successfully created pre-enrollment
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: Unauthorized
+ */
+router.post('/', createPreEnrollment);
+
+
 router.use(protect);
 
 /**
@@ -67,44 +108,7 @@ router.get('/', authorize('registrar', 'department_head'), getAllPreEnrollments)
  */
 router.get('/:id', authorize('registrar', 'department_head'), getPreEnrollmentById);
 
-/**
- * @swagger
- * /api/preenrollments:
- *   post:
- *     summary: Create a new pre-enrollment
- *     tags: [PreEnrollments]
- *     description: >
- *       **Roles Allowed:** `registrar`
- *       Add a new pre-enrollment record.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               student_id:
- *                 type: integer
- *               section_id:
- *                 type: integer
- *               status:
- *                 type: string
- *             example:
- *               student_id: 1
- *               section_id: 2
- *               status: "pending"
- *     security:
- *       - bearerAuth: []
- *     x-authorize: ['registrar']
- *     responses:
- *       201:
- *         description: Successfully created pre-enrollment
- *       400:
- *         description: Bad request
- *       401:
- *         description: Unauthorized
- */
-router.post('/', createPreEnrollment);
+
 
 /**
  * @swagger
